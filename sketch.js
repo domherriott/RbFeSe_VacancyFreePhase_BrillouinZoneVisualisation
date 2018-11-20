@@ -321,10 +321,14 @@ function draw() {
 	pop();
 
 
-	// Draw M points
+	// Draw M and Gamma points
+	push();
+		stroke(255, 0, 255);
+		sphere(0.04);
+	pop();
 	push();
 		translate(Mx, My, Mz);
-		stroke(255, 0, 255);
+		stroke(0, 255, 0);
 		sphere(0.04);
 	pop();
 
