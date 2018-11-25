@@ -20,32 +20,43 @@ Mz = 0.4295020375;
 Tx = Mx;
 Ty = My;
 Tz = Mz/2;
+Xx = Px;
+Xy = Py;
+Xz = 0;
 
 angle = 0;
 
-function setup() {
-
-	createCanvas(710, 400, WEBGL);
-
+function preload() {
+	//font = loadFont('OpenSans-Regular.ttf');
+	//font = loadFont('NotoSansKR-Regular.otf');
 }
 
-
+function setup(){
+	var canvas = createCanvas(600, 600, WEBGL);
+	canvas.parent('sketch-holder');
+}
 
 function draw() {
 
-	scale(100)
+	
+	let angleX = map(mouseX, 0, width, 0, 2*PI);
+	let angleY = map(mouseY, 0, height, 0, 2*PI);
+	camera(0, 0, (height/2) / tan(PI/6), 0, 0, 0, 0, 1, 0);
+	scale(200);
 	background(256);
-
-	fill(220);
 
 	stroke(0);
 
+	fill(0, 0, 0);
+	//translate(0.1, 0.1, 0.1);
+	
 
-	rotateX(angle);
-	rotateY(angle * 0.3);
-	rotateZ(angle * 0.2);
-	angle += 0.003;
-
+	rotateX(angleY);
+	rotateY(angleX);
+	angle = 1
+	rotateZ(angle);
+	//angle += 0.003;
+	
 
 	// Draw G1:G2
 	beginShape();
@@ -286,36 +297,80 @@ function draw() {
 
 
 	// Draw P surface
+	push(); 
 	beginShape();
+	fill(0,0,255, 25);
+
 	vertex(Px, Py, Pz, 0, 0);
 	vertex(-Px, Py, Pz, 0, 0);
 	vertex (-Px, -Py, Pz, 0, 0);
 	vertex (Px, -Py, Pz, 0, 0);
 	endShape(CLOSE);
+	pop();
 
+	/*
+	// Draw X surface
+	push(); 
+	beginShape();
+	fill(255,0,0, 25);
+
+	vertex(Xx, Xy, Xz, 0, 0);
+	vertex(-Xx, Xy, Xz, 0, 0);
+	vertex (-Xx, -Xy, Xz, 0, 0);
+	vertex (Xx, -Xy, Xz, 0, 0);
+	endShape(CLOSE);
+	pop();
+	*/
 
 
 	// Draw P points
 	push();
 		translate(Px, Py, Pz);
-		stroke(255, 0, 0);
+		stroke(0, 0, 255);
 		sphere(0.04);
+		
 	pop();
 
 	push();
 		translate(-Px, Py, Pz);
-		stroke(255, 0, 0);
+		stroke(0, 0, 255);
 		sphere(0.04);
 	pop();
 
 	push();
 		translate(-Px, -Py, Pz);
-		stroke(255, 0, 0);
+		stroke(0, 0, 255);
 		sphere(0.04);
 	pop();
 
 	push();
 		translate(Px, -Py, Pz);
+		stroke(0, 0, 255);
+		sphere(0.04);
+	pop();
+
+	// Draw X points
+	push();
+		translate(Xx, Xy, Xz);
+		stroke(255, 0, 0);
+		sphere(0.04);
+		
+	pop();
+
+	push();
+		translate(-Xx, Xy, Xz);
+		stroke(255, 0, 0);
+		sphere(0.04);
+	pop();
+
+	push();
+		translate(-Xx, -Xy, Xz);
+		stroke(255, 0, 0);
+		sphere(0.04);
+	pop();
+
+	push();
+		translate(Xx, -Xy, Xz);
 		stroke(255, 0, 0);
 		sphere(0.04);
 	pop();
@@ -325,6 +380,7 @@ function draw() {
 	push();
 		stroke(255, 0, 255);
 		sphere(0.04);
+		stroke(0, 0, 0);
 	pop();
 	push();
 		translate(Mx, My, Mz);
@@ -336,7 +392,9 @@ function draw() {
 	// Draw T points
 	push();
 		translate(Tx, Ty, Tz);
-		stroke(0, 0, 255);
+		stroke(0, 255, 255);
 		sphere(0.04);
 	pop();
+
+	//save('RbFeSe_BZ_Screenshot.jpg');
 }
