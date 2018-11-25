@@ -24,7 +24,7 @@ Xx = Px;
 Xy = Py;
 Xz = 0;
 
-angle = 0;
+angle = 0.3;
 
 function preload() {
 	//font = loadFont('OpenSans-Regular.ttf');
@@ -39,8 +39,13 @@ function setup(){
 function draw() {
 
 	
-	let angleX = map(mouseX, 0, width, 0, 2*PI);
-	let angleY = map(mouseY, 0, height, 0, 2*PI);
+	//let angleX = map(mouseX, 0, width, 0, 2*PI);
+	//let angleY = map(mouseY, 0, height, 0, 2*PI);
+
+	let angleX = 2 * PI * 0
+	let angleY = 2 * PI * 0.206
+	let angleZ = 2 * PI * 0.83
+
 	camera(0, 0, (height/2) / tan(PI/6), 0, 0, 0, 0, 1, 0);
 	scale(200);
 	background(256);
@@ -51,11 +56,10 @@ function draw() {
 	//translate(0.1, 0.1, 0.1);
 	
 
-	rotateX(angleY);
-	rotateY(angleX);
-	angle = 1
-	rotateZ(angle);
-	//angle += 0.003;
+	rotateX(angle);
+	rotateY(angle * 0.6);
+	rotateZ(angle * 0.4);
+	angle += 0.005;
 	
 
 	// Draw G1:G2
